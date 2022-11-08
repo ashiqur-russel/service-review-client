@@ -38,26 +38,25 @@ const Header = () => {
             Home
           </Link>
           <Link
-            to={"/"}
+            to={"/service"}
             className="text-[#696c6d] hover:text-primary transition"
           >
             Services
           </Link>
 
           <Link
-            to={"/"}
+            to={{
+              pathname: "/about",
+              hash: "#about",
+              state: { fromDashboard: true },
+            }}
             className="text-[#696c6d] hover:text-primary transition"
           >
             About
           </Link>
+
           <Link
-            to={"/"}
-            className="text-[#696c6d] hover:text-primary transition"
-          >
-            Porftolio
-          </Link>
-          <Link
-            to={"/"}
+            to={"/contact"}
             className="text-[#696c6d] hover:text-primary transition"
           >
             Contact

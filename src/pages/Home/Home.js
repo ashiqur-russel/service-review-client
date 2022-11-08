@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 // import images
-import WomanImg from "../../img/home/woman.png";
 import MenImg from "../../img/home/group.jpeg";
 // import link
 import { Link } from "react-router-dom";
@@ -10,6 +9,7 @@ import { motion } from "framer-motion";
 import { transition1 } from "../../transitions";
 import { CursorContext } from "../../contexts/CursorContext";
 import About from "../About/About";
+import Contact from "../Contact/Contact";
 // cursor context
 
 const Home = () => {
@@ -52,7 +52,8 @@ const Home = () => {
               animate={{ scale: 1 }}
               exit={{ scale: 0 }}
               transition={transition1}
-              className="relative lg:-right-40 overflow-hidden"
+              className="relative lg:-right-40 overflow-hidden mr-40"
+              style={{ width: "50%" }}
             >
               <motion.img
                 whileHover={{ scale: 1.1 }}
@@ -64,7 +65,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="container mx-auto h-full relative">
+      <div className="container mx-auto h-full relative" id="about">
         <About></About>
       </div>
     </motion.section>
