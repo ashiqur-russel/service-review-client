@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 // import transition
 import { transition1 } from "../../transitions";
 import { CursorContext } from "../../contexts/CursorContext";
+import About from "../About/About";
 // cursor context
 
 const Home = () => {
@@ -38,7 +39,7 @@ const Home = () => {
               photographer <br /> & film maker
             </h1>
             <p className="text-[26px] lg:text-[36px] font-primary mb-4 lg:mb-12">
-              Los Angeles, USA
+              Berlin, Germany
             </p>
             <Link to={"/contact"} className="btn mb-[30px]">
               hire me
@@ -62,6 +63,9 @@ const Home = () => {
             </motion.div>
           </div>
         </div>
+      </div>
+      <div className="container mx-auto h-full relative">
+        <About></About>
       </div>
     </motion.section>
   );
