@@ -71,7 +71,7 @@ const Header = () => {
             </Link>
           ) : (
             <Link
-              to={"/contact"}
+              to={"/signin"}
               className="text-[#696c6d] hover:text-primary transition"
             >
               Login

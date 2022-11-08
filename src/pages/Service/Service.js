@@ -1,5 +1,9 @@
 import React from "react";
-//  icons
+// import motion
+import { motion } from "framer-motion";
+// import transition
+import { transition1 } from "../../transitions";
+import { CursorContext } from "../../contexts/CursorContext";
 
 //SRVICE
 export const services = [
