@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
 // import components
-import Logo from "../img/header/logo.svg";
+import Socials from "./Socials";
+import MobileNav from "./MobileNav";
+
+import Logo from "../img/header/ç-ar-logo.png";
 // import link
 import { Link } from "react-router-dom";
 import { CursorContext } from "../contexts/CursorContext";
@@ -19,8 +22,9 @@ const Header = () => {
           to={"/"}
           className="max-w-[200px]"
         >
-          <img src={Logo} alt="" />
+          <img src={Logo} alt="" width={60} />
         </Link>
+
         {/* nav - initially hidden - show on desktop mode */}
         <nav
           className="hidden xl:flex gap-x-12 font-semibold"
@@ -54,8 +58,9 @@ const Header = () => {
         </nav>
       </div>
       {/* socials */}
-
+      <Socials />
       {/* mobile nav */}
+      <MobileNav />
     </header>
   );
 };

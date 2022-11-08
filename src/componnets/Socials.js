@@ -7,8 +7,8 @@ import {
   ImInstagram,
   ImYoutube,
 } from "react-icons/im";
+import { CursorContext } from "../contexts/CursorContext";
 // import cursor context
-import { CursorContext } from "../context/CursorContext";
 
 const Socials = () => {
   const { mouseEnterHandler, mouseLeaveHandler } = useContext(CursorContext);
