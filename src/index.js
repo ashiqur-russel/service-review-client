@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import CursorProvider from "./contexts/CursorContext";
 import AuthProvider from "./contexts/AuthProvider";
 import "tw-elements";
+import "react-photo-view/dist/react-photo-view.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

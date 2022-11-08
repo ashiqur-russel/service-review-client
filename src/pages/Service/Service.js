@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { transition1 } from "../../transitions";
 import { CursorContext } from "../../contexts/CursorContext";
 import Spinner from "../../componnets/Spinner";
+import { PhotoProvider, PhotoView } from "react-photo-view";
 
 //SRVICE
 
@@ -60,20 +61,32 @@ const Service = () => {
               {services.map((service, idx) => {
                 const { imgUrl, name, description, price } = service;
                 return (
-                  <div className="bg-secondary p-6 rounded-2xl" key={idx}>
-                    <div className="text-accent rounded-sm w-full h-50 flex justify-center items-center mb-4 text-[28px]">
-                      <img src={imgUrl} alt="" className="w-full h-50" />
+                  <PhotoProvider>
+                    <div className="bg-secondary p-6 rounded-2xl" key={idx}>
+                      <div className="text-accent rounded-sm w-full h-50 flex justify-center items-center mb-4 text-[28px]">
+                        <PhotoView src={imgUrl}>
+                          <img
+                            src={imgUrl}
+                            alt=""
+                            className="w-full h-50"
+                            style={{ objectFit: "cover" }}
+                          />
+                        </PhotoView>
+                      </div>
+                      <h4 className="text-xl font-medium mb-2 text-white">
+                        {name}
+                      </h4>
+                      <p className="text-white">
+                        {description.length > 100
+                          ? description.substring(0, 100 - 3) + "..."
+                          : description}
+                      </p>
+                      <p className="text-white">Price: ${price}</p>
+                      <p className=" border-0 p-3 mt-10 bg-white mx-auto text-center mb-0 hover:bg-slate-500">
+                        Details
+                      </p>
                     </div>
-                    <h4 className="text-xl font-medium mb-2 text-white">
-                      {name}
-                    </h4>
-                    <p className="text-white">
-                      {description.length > 100
-                        ? description.substring(0, 100 - 3) + "..."
-                        : description}
-                    </p>
-                    <p className="text-white">Price: ${price}</p>
-                  </div>
+                  </PhotoProvider>
                 );
               })}
             </div>
