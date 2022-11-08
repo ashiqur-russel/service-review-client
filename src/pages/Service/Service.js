@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 // import motion
 import { motion } from "framer-motion";
 // import transition
@@ -39,9 +39,17 @@ export const services = [
   },
 ];
 const Service = () => {
+  const { mouseEnterHandler, mouseLeaveHandler } = useContext(CursorContext);
+
   return (
-    <section id="services" className="section bg-tertiary">
-      <div className="container mx-auto">
+    <motion.section
+      initial={{ opacity: 0, y: "100%" }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: "100%" }}
+      transition={transition1}
+      className="section bg-white"
+    >
+      <div className="container mx-auto h-full m-0">
         <div className="flex flex-col items-center text-center">
           <h2 className="section-title before:content-services relative before:absolute before:opacity-40 before:-top-[2rem] before:-left-28 before:hidden before:lg:block">
             What I do for clients
@@ -51,11 +59,15 @@ const Service = () => {
             labore nisium illum cupiditate reiciendis a numquam
           </p>
         </div>
-        <div className="grid lg:grid-cols-4 gap-8">
-          {services.map((service, index) => {
+        <div
+          className="grid lg:grid-cols-4 gap-8"
+          onMouseEnter={mouseEnterHandler}
+          onMouseLeave={mouseLeaveHandler}
+        >
+          {services.map((service, idx) => {
             const { icon, name, description } = service;
             return (
-              <div className="bg-secondary p-6 rounded-2xl" key={index}>
+              <div className="bg-secondary p-6 rounded-2xl" key={idx}>
                 <div className="text-accent rounded-sm w-full h-50 flex justify-center items-center mb-24 text-[28px]">
                   <img src={icon} alt="" className="w-full h-50" />
                 </div>
@@ -66,7 +78,7 @@ const Service = () => {
           })}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

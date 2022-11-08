@@ -5,7 +5,9 @@ import {
   getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -15,43 +17,61 @@ export const AuthContext = createContext();
 const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState("Ashiq");
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  //Popup appear when google signin
+  const providerLogin = (provider) => {
+    setLoading(true);
+    return signInWithPopup(auth, provider);
+  };
 
+  //Create user to firebase
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
-  const logOut = () => {
-    setLoading(true);
-    localStorage.removeItem("review-service-token");
-    return signOut(auth);
-  };
-  const login = (email, password) => {
+
+  //Signin Functinality
+
+  const signIn = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
+
+  //logout function
+  const logOut = () => {
+    setLoading(true);
+    return signOut(auth);
+  };
+
+  //update user profile from firebase
+  const updateUserProfile = (profile) => {
+    return updateProfile(auth.currentUser, profile);
+  };
+
+  //Observer for user tracking
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      console.log(currentUser);
-      setUser(currentUser);
+      if (currentUser === null || currentUser.uid) {
+        setUser(currentUser);
+      }
       setLoading(false);
     });
 
     return () => {
-      return unsubscribe();
+      unsubscribe();
     };
   }, []);
 
   const authInfo = {
     user,
-    loading,
+    providerLogin,
     createUser,
-    login,
     logOut,
-    setLoading,
+    updateUserProfile,
+    signIn,
+    loading,
   };
-
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );

@@ -55,11 +55,14 @@ const CursorProvider = ({ children }) => {
   };
 
   // mouse enter handler
-  const mouseEnterHandler = () => {
+  const mouseEnterHandler = (event) => {
+    event.preventDefault();
     setCursorBG("text");
   };
   // mouse leaver handler
-  const mouseLeaveHandler = () => {
+  const mouseLeaveHandler = (event) => {
+    event.preventDefault();
+
     setCursorBG("default");
   };
 
