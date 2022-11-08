@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import CursorProvider from "./contexts/CursorContext";
 import AuthProvider from "./contexts/AuthProvider";
+import "tw-elements";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

@@ -1,5 +1,8 @@
 module.exports = {
-  content: ["./src/**/*.{html,js}"],
+  content: [
+    "./src/**/*.{html,js}",
+    "./node_modules/tw-elements/dist/js/**/*.js",
+  ],
   theme: {
     fontFamily: {
       primary: "Playfair Display",
@@ -30,5 +33,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("tw-elements/dist/plugin")],
 };

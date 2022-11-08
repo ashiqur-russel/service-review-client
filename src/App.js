@@ -11,7 +11,7 @@ function App() {
   const { cursorVariants, cursorBG } = useContext(CursorContext);
 
   return (
-    <div className="max-w-screen-xl mx-auto">
+    <div className="max-w-screen mx-auto">
       <AnimatePresence initial={true} mode="wait">
         <RouterProvider router={router}></RouterProvider>
         <motion.div

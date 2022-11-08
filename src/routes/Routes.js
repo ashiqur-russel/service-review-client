@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import Error from "../componnets/Error";
 import Main from "../Layout/Main";
 import About from "../pages/About/About";
 import Contact from "../pages/Contact/Contact";
@@ -18,7 +19,6 @@ export const router = createBrowserRouter([
       },
       {
         path: "/services",
-        loader: () => fetch("http://localhost:5000/services"),
         element: <Service></Service>,
       },
       {
@@ -38,5 +38,9 @@ export const router = createBrowserRouter([
         element: <Signup></Signup>,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <Error></Error>,
   },
 ]);
