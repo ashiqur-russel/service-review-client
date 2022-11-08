@@ -10,6 +10,7 @@ import { transition1 } from "../../transitions";
 import { CursorContext } from "../../contexts/CursorContext";
 import About from "../About/About";
 import Contact from "../Contact/Contact";
+import LimitedService from "../LimitedService/LimitedService";
 // cursor context
 
 const Home = () => {
@@ -67,6 +68,9 @@ const Home = () => {
       </div>
       <div className="container mx-auto h-full relative" id="about">
         <About></About>
+      </div>
+      <div className="container mx-auto h-full relative" id="about">
+        <LimitedService></LimitedService>
       </div>
     </motion.section>
   );

@@ -12,7 +12,6 @@ import { AuthContext } from "../contexts/AuthProvider";
 const Header = () => {
   const { mouseEnterHandler, mouseLeaveHandler } = useContext(CursorContext);
   const { user, logOut } = useContext(AuthContext);
-  console.log(user);
   const navigate = useNavigate(); //Logout functionality
   const handleLogOut = () => {
     logOut()
@@ -48,7 +47,7 @@ const Header = () => {
             Home
           </Link>
           <Link
-            to={"/service"}
+            to={"/services"}
             className="text-[#696c6d] hover:text-primary transition"
           >
             Services
@@ -72,12 +71,26 @@ const Header = () => {
             Contact
           </Link>
           {user ? (
-            <Link
-              onClick={handleLogOut}
-              className="text-[#696c6d] hover:text-primary transition"
-            >
-              Logout
-            </Link>
+            <>
+              <Link
+                to={"/my-reviews"}
+                className="text-[#696c6d] hover:text-primary transition"
+              >
+                My Reviews
+              </Link>
+              <Link
+                to={"/add-service"}
+                className="text-[#696c6d] hover:text-primary transition"
+              >
+                Add Service
+              </Link>
+              <Link
+                onClick={handleLogOut}
+                className="text-[#696c6d] hover:text-primary transition"
+              >
+                Logout
+              </Link>
+            </>
           ) : (
             <Link
               to={"/signin"}

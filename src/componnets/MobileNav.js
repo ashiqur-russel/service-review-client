@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+
+// import link
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthProvider";
 // import icons
 import { IoMdClose } from "react-icons/io";
 import { CgMenuRight } from "react-icons/cg";
-// import link
-import { Link } from "react-router-dom";
 // import motion
 import { motion } from "framer-motion";
 
@@ -22,6 +24,16 @@ const menuVariants = {
 
 const MobileNav = () => {
   const [openMenu, setOpenMenu] = useState(false);
+  const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate(); //Logout functionality
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        navigate("/signin");
+      })
+      .catch((err) => console.error(err));
+  };
+
   return (
     <nav className="text-primary xl:hidden">
       {/* nav open button */}
@@ -51,7 +63,7 @@ const MobileNav = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/">Services</Link>
+            <Link to="/services">Services</Link>
           </li>
           <li>
             <Link to="/about">About</Link>
@@ -60,6 +72,44 @@ const MobileNav = () => {
           <li>
             <Link to="/contact">Contact</Link>
           </li>
+          {user ? (
+            <>
+              <li>
+                <Link
+                  to={"/my-reviews"}
+                  className="text-[#696c6d] hover:text-primary transition"
+                >
+                  My Reviews
+                </Link>
+              </li>
+              <li>
+                {" "}
+                <Link
+                  to={"/add-service"}
+                  className="text-[#696c6d] hover:text-primary transition"
+                >
+                  Add Service
+                </Link>
+              </li>
+              <li>
+                <Link
+                  onClick={handleLogOut}
+                  className="text-[#696c6d] hover:text-primary transition"
+                >
+                  Logout
+                </Link>
+              </li>
+            </>
+          ) : (
+            <li>
+              <Link
+                to={"/signin"}
+                className="text-[#696c6d] hover:text-primary transition"
+              >
+                Login
+              </Link>
+            </li>
+          )}
         </ul>
       </motion.div>
     </nav>
