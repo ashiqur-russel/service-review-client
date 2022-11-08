@@ -41,6 +41,13 @@ const Header = () => {
             to={"/"}
             className="text-[#696c6d] hover:text-primary transition"
           >
+            Services
+          </Link>
+
+          <Link
+            to={"/"}
+            className="text-[#696c6d] hover:text-primary transition"
+          >
             About
           </Link>
           <Link
