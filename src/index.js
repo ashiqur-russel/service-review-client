@@ -4,13 +4,16 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import CursorProvider from "./contexts/CursorContext";
+import AuthProvider from "./contexts/AuthProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <CursorProvider>
-      <App />
-    </CursorProvider>
+    <AuthProvider>
+      <CursorProvider>
+        <App />
+      </CursorProvider>
+    </AuthProvider>
   </React.StrictMode>
 );
 

@@ -7,11 +7,12 @@ import Logo from "../img/header/ç-ar-logo.png";
 // import link
 import { Link } from "react-router-dom";
 import { CursorContext } from "../contexts/CursorContext";
+import { AuthContext } from "../contexts/AuthProvider";
 // import cursor context
 
 const Header = () => {
   const { mouseEnterHandler, mouseLeaveHandler } = useContext(CursorContext);
-
+  const { user } = useContext(AuthContext);
   return (
     <header className="w-full px-[30px] lg:px-[100px] z-30 h-[100px] lg:h-[140px] flex items-center">
       <div className="flex flex-col lg:flex-row lg:items-center w-full justify-between">
@@ -61,10 +62,24 @@ const Header = () => {
           >
             Contact
           </Link>
+          {user ? (
+            <Link
+              to={"/logout"}
+              className="text-[#696c6d] hover:text-primary transition"
+            >
+              Logout
+            </Link>
+          ) : (
+            <Link
+              to={"/contact"}
+              className="text-[#696c6d] hover:text-primary transition"
+            >
+              Login
+            </Link>
+          )}
         </nav>
       </div>
       {/* socials */}
-      <Socials />
       {/* mobile nav */}
       <MobileNav />
     </header>

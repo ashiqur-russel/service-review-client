@@ -5,6 +5,12 @@ module.exports = {
       primary: "Playfair Display",
       secondary: "Mulish",
     },
+    container: {
+      padding: {
+        DEFAULT: "1rem",
+        lg: "3rem",
+      },
+    },
     screens: {
       sm: "640px",
       md: "768px",
@@ -14,9 +20,13 @@ module.exports = {
     extend: {
       colors: {
         primary: "#0E1112",
+        secondary: "#1C1D24",
         grey: "#484B4B",
-
-        accent: "#EEF7F9",
+        accent: {
+          DEFAULT: "#0E1112",
+          hover: "#925a2b",
+        },
+        paragraph: "#878e99",
       },
     },
   },
