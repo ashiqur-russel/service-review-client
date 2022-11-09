@@ -14,7 +14,7 @@ const Signin = () => {
   //navigate
   const navigate = useNavigate();
   let location = useLocation();
-  let from = location.state?.from?.pathname || "/service";
+  let from = location.state?.from?.pathname || "/services";
 
   //Google Sign In Method
   const handleGoogleSignIn = () => {

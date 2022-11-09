@@ -79,7 +79,7 @@ const Header = () => {
                 My Reviews
               </Link>
               <Link
-                to={"/add-service"}
+                to={"/add-services"}
                 className="text-[#696c6d] hover:text-primary transition"
               >
                 Add Service

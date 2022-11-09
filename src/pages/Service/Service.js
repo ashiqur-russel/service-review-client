@@ -6,6 +6,7 @@ import { transition1 } from "../../transitions";
 import { CursorContext } from "../../contexts/CursorContext";
 import Spinner from "../../componnets/Spinner";
 import { PhotoProvider, PhotoView } from "react-photo-view";
+import { Link } from "react-router-dom";
 
 //SRVICE
 
@@ -59,7 +60,7 @@ const Service = () => {
               onMouseLeave={mouseLeaveHandler}
             >
               {services.map((service, idx) => {
-                const { imgUrl, name, description, price } = service;
+                const { imgUrl, name, description, price, _id } = service;
                 return (
                   <PhotoProvider>
                     <div className="bg-secondary p-6 rounded-2xl" key={idx}>
@@ -82,9 +83,12 @@ const Service = () => {
                           : description}
                       </p>
                       <p className="text-white">Price: ${price}</p>
-                      <p className=" border-0 p-3 mt-10 bg-white mx-auto text-center mb-0 hover:bg-slate-500">
-                        Details
-                      </p>
+                      <Link to={`/services/${_id}`}>
+                        {" "}
+                        <p className=" border-0 p-3 mt-10 bg-white mx-auto text-center mb-0 hover:bg-slate-500">
+                          Details
+                        </p>
+                      </Link>
                     </div>
                   </PhotoProvider>
                 );

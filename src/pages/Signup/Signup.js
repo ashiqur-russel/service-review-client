@@ -36,7 +36,7 @@ const Signup = () => {
         handleUpdateUserProfile(name);
         logOut();
         toast.success("Sign up Successfully! You can login Now!");
-        navigate("/login");
+        navigate("/signin");
         console.log(user);
       })
       .catch((e) => {
