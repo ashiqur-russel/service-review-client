@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 // import components
-import Socials from "./Socials";
 import MobileNav from "./MobileNav";
 
 import Logo from "../img/header/ç-ar-logo.png";

@@ -4,7 +4,7 @@ import Review from "../Review/Review";
 
 const SignleService = () => {
   const singleService = useLoaderData();
-  const { imgUrl, name, description, price, _id } = singleService;
+  const { imgUrl, name, description, price } = singleService;
   console.log(singleService);
 
   return (
@@ -27,7 +27,7 @@ const SignleService = () => {
         </div>
       </div>
       <div className="flex lg:flex:row justify-center">
-        <Review _id={_id}></Review>
+        <Review singleService={singleService}></Review>
       </div>
     </>
   );

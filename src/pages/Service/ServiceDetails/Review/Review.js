@@ -1,7 +1,9 @@
+import { async } from "@firebase/util";
 import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../../../contexts/AuthProvider";
 
-const Review = ({ _id }) => {
+const Review = ({ singleService }) => {
+  const { _id, name } = singleService;
   console.log(_id);
   const { user } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
@@ -13,7 +15,53 @@ const Review = ({ _id }) => {
         setReviews(data);
       })
       .then((err) => console.log(err));
-  }, [_id]);
+  }, [reviews, _id]);
+
+  const handlePlaceReview = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const user_name = user?.displayName;
+    const email = user?.email;
+    const service_id = _id;
+    const service_name = name;
+    const photoURL = user?.photoURL;
+    const message = form.message.value;
+    console.log(user_name, email, message, service_id);
+    const reviews = {
+      user_photo: photoURL,
+      user_name,
+      email,
+      service_id,
+      service_name,
+      comment: message,
+      date: new Date(),
+    };
+
+    fetch("http://localhost:5000/reviews", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(reviews),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          alert("Reviews added successfully");
+          form.reset();
+        }
+      })
+      .catch((er) => console.error(er));
+  };
+
+  const handleInputBlur = (event) => {
+    event.preventDefault();
+    const field = event.target.message;
+    const value = event.target.value;
+    const newReview = [...reviews];
+    newReview[field] = value;
+    setReviews(newReview);
+  };
 
   return (
     <div className="p-10 w-full bg-gray-100 m-5">
@@ -49,7 +97,7 @@ const Review = ({ _id }) => {
                   <p className="text-gray-900 leading-none">
                     {review.user_name}
                   </p>
-                  <p className="text-gray-600">Aug 18</p>
+                  <p className="text-gray-600">{review.date}</p>
                 </div>
               </div>
             </div>
@@ -58,14 +106,16 @@ const Review = ({ _id }) => {
       )}
       <div className="flex justify-center">
         <div className="mb-3 xl:w-96">
-          <label
-            for="exampleFormControlTextarea1"
-            className="form-label inline-block mb-2 text-gray-700"
-          >
-            Give A Review
-          </label>
-          <textarea
-            className="
+          <form onSubmit={handlePlaceReview}>
+            <label
+              htmlFor="exampleFormControlTextarea1"
+              className="form-label inline-block mb-2 text-gray-700"
+            >
+              Give A Review
+            </label>
+            <textarea
+              name="message"
+              className="
         form-control
         block
         w-full
@@ -82,11 +132,13 @@ const Review = ({ _id }) => {
         m-0
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
       "
-            id="exampleFormControlTextarea1"
-            rows="3"
-            placeholder="Your Review"
-          ></textarea>
-          <button className="btn mt-5">Submit</button>
+              id="exampleFormControlTextarea1"
+              rows="3"
+              placeholder="Your Review"
+              onBlur={handleInputBlur}
+            ></textarea>
+            <button className="btn mt-5">Submit</button>
+          </form>
         </div>
       </div>
     </div>
