@@ -9,7 +9,7 @@ const Review = ({ singleService }) => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews/${_id}`)
+    fetch(`http://localhost:5000/reviews-all/${_id}`)
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);
@@ -37,7 +37,7 @@ const Review = ({ singleService }) => {
       date: new Date(),
     };
 
-    fetch("http://localhost:5000/reviews", {
+    fetch("http://localhost:5000/reviews-all", {
       method: "POST",
       headers: {
         "content-type": "application/json",
