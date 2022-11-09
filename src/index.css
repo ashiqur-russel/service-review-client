@@ -44,3 +44,9 @@
     @apply py-[18px] px-[50px] h-[66px] flex items-center justify-center text-base uppercase font-secondary font-semibold bg-primary text-white;
   }
 }
+tr {
+  border: 1px solid black;
+}
+.table-div {
+  padding: 10px !important;
+}

@@ -3,7 +3,7 @@ import { AuthContext } from "../../contexts/AuthProvider";
 import ReviewTable from "./ReviewTable";
 
 const MyReviews = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const [reviews, setReviews] = useState([]);
 
@@ -13,18 +13,39 @@ const MyReviews = () => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
-
         setReviews(data);
       })
       .then((err) => console.log(err));
   }, [user?.email]);
 
+  const handleDelete = (id) => {
+    console.log("Order delete clicked", id);
+    const proceed = window.confirm(
+      "Are you sure, you want to delete this order"
+    );
+
+    if (proceed) {
+      fetch(`http://localhost:5000/reviews-all/${id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.deletedCount > 0) {
+            alert("Deleted Successfully");
+            const remaining = reviews.filter((rvw) => rvw._id !== id);
+            setReviews(remaining);
+          }
+        })
+        .then((err) => console.log(err));
+    }
+  };
+
   return (
-    <div className="overflow-x-auto w-full">
-      <table className="table-auto w-full mt-10 mb-10">
+    <div className="overflow-x-auto w-full table-div">
+      <table className="table-auto w-full mt-10 mb-10 border-gray border-sky-900 ">
         <thead>
-          <tr className="">
+          <tr className="border-sky-900">
             <th>
               <label>
                 <input type="checkbox" className="checkbox" />
@@ -38,7 +59,11 @@ const MyReviews = () => {
         </thead>
         <tbody>
           {reviews.map((review) => (
-            <ReviewTable key={review._id} review={review}></ReviewTable>
+            <ReviewTable
+              key={review._id}
+              review={review}
+              handleDelete={handleDelete}
+            ></ReviewTable>
           ))}
         </tbody>
       </table>

@@ -14,7 +14,7 @@ const Signin = () => {
   //navigate
   const navigate = useNavigate();
   let location = useLocation();
-  let from = location.state?.from?.pathname || "/service";
+  let from = location.state?.from?.pathname || "/services";
 
   //Google Sign In Method
   const handleGoogleSignIn = () => {
@@ -23,7 +23,9 @@ const Signin = () => {
         const user = result.user;
         if (user.uid) {
           navigate(from, { replace: true });
-          toast.success("Logged in Successfully!");
+          toast.success("Logged in Successfully!", {
+            position: toast.POSITION.TOP_CENTER,
+          });
         }
       })
       .catch((error) => setError(error));
@@ -37,7 +39,9 @@ const Signin = () => {
         const user = result.user;
         if (user.uid) {
           navigate(from, { replace: true });
-          toast.success("Logged in Successfully!");
+          toast.success("Logged in Successfully!", {
+            position: toast.POSITION.TOP_CENTER,
+          });
         }
 
         console.log(user);
@@ -51,17 +55,17 @@ const Signin = () => {
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
 
     signIn(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
         form.reset();
         setError("");
         if (user.uid) {
           navigate(from, { replace: true });
-          toast.success("Logged in Successfully!");
+          toast.success("Logged in Successfully!", {
+            position: toast.POSITION.TOP_CENTER,
+          });
         }
       })
       .catch((error) => {

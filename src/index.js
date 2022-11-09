@@ -7,6 +7,8 @@ import CursorProvider from "./contexts/CursorContext";
 import AuthProvider from "./contexts/AuthProvider";
 import "tw-elements";
 import "react-photo-view/dist/react-photo-view.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -14,6 +16,7 @@ root.render(
     <AuthProvider>
       <CursorProvider>
         <App />
+        <ToastContainer />
       </CursorProvider>
     </AuthProvider>
   </React.StrictMode>

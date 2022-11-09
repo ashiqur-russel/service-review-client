@@ -1,10 +1,9 @@
-import { async } from "@firebase/util";
 import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../../../contexts/AuthProvider";
+import { toast } from "react-toastify";
 
 const Review = ({ singleService }) => {
   const { _id, name } = singleService;
-  console.log(_id);
   const { user } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
 
@@ -15,8 +14,7 @@ const Review = ({ singleService }) => {
         setReviews(data);
       })
       .then((err) => console.log(err));
-  }, [reviews, _id]);
-
+  }, []);
   const handlePlaceReview = (event) => {
     event.preventDefault();
     const form = event.target;

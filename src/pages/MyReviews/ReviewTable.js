@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-const ReviewTable = ({ review }) => {
-  const { service_name, email, date, service_id, comment } = review;
+const ReviewTable = ({ review, handleDelete }) => {
+  const { service_name, date, comment, _id } = review;
 
   return (
-    <tr className="text-center">
+    <tr className="text-center border-sky-900">
       <th>
         <label>
-          <button className=" btn-circle btn-outline">
+          <button
+            className=" btn-circle btn-outline bg-gray-500"
+            onClick={() => handleDelete(_id)}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"

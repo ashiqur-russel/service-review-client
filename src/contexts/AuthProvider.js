@@ -1,5 +1,7 @@
 import React from "react";
 import { createContext } from "react";
+import { toast } from "react-toastify";
+
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -41,6 +43,9 @@ const AuthProvider = ({ children }) => {
   //logout function
   const logOut = () => {
     setLoading(true);
+    toast.info("You are logged out!", {
+      position: toast.POSITION.TOP_CENTER,
+    });
     return signOut(auth);
   };
 

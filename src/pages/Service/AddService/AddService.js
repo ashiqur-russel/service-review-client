@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider";
+import { toast } from "react-toastify";
 
 const AddService = () => {
   const { user } = useContext(AuthContext);
@@ -33,7 +34,9 @@ const AddService = () => {
       .then((data) => {
         console.log(data);
         if (data.acknowledged) {
-          alert("Service added successfully");
+          toast.success("Service added successfully", {
+            position: toast.POSITION.TOP_CENTER,
+          });
           form.reset();
         }
       })

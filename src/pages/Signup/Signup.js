@@ -30,12 +30,14 @@ const Signup = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        setError("");
         form.reset();
 
         handleUpdateUserProfile(name);
         logOut();
-        toast.success("Sign up Successfully! You can login Now!");
+        toast.success("Sign up Successfully! You can login Now!", {
+          position: toast.POSITION.TOP_CENTER,
+        });
+
         navigate("/signin");
         console.log(user);
       })
@@ -59,46 +61,6 @@ const Signup = () => {
 
   return (
     <>
-      {/*  <div className="flex items-center justify-center min-h-screen bg-gray-100">
-        <div className="px-8 py-6 mt-4 text-left bg-white shadow-lg">
-          <h3 className="text-2xl font-bold text-center">
-            Login to your account
-          </h3>
-          <form action="">
-            <div className="mt-4">
-              <div>
-                <label htmlFor="">Email</label>
-                <input
-                  type="text"
-                  placeholder="Email"
-                  className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
-                />
-              </div>
-              <div>
-                <label htmlFor="">Password</label>
-                <input
-                  name="password"
-                  type="text"
-                  placeholder="Password"
-                  className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
-                />
-              </div>
-              <div className="flex items-baseline justify-between">
-                <button className="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900">
-                  Login
-                </button>
-                <Link
-                  href="#"
-                  className="text-sm text-blue-600 hover:underline"
-                >
-                  Forgot password?
-                </Link>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div> */}
-
       <div className="container h-screen m-auto">
         <div className="relative h-full ml-auto lg:w-6/12 mx-auto">
           <div className="m-auto py-12 px-6 sm:p-20 xl:w-10/12">
