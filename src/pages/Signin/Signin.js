@@ -5,6 +5,7 @@ import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../contexts/AuthProvider";
+import useTitle from "../../hooks/useTitle";
 const Signin = () => {
   const [error, setError] = useState("");
   const { providerLogin, signIn, setLoading } = useContext(AuthContext);
@@ -15,7 +16,7 @@ const Signin = () => {
   const navigate = useNavigate();
   let location = useLocation();
   let from = location.state?.from?.pathname || "/services";
-
+  useTitle("Login");
   //Google Sign In Method
   const handleGoogleSignIn = () => {
     providerLogin(googleProvider)

@@ -3,11 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import ReviewTable from "./ReviewTable";
 import { toast } from "react-toastify";
+import useTitle from "../../hooks/useTitle";
 
 const MyReviews = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-
+  useTitle("Mein Review");
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
@@ -68,9 +69,9 @@ const MyReviews = () => {
           </tr>
         </thead>
         <tbody>
-          {reviews.map((review) => (
+          {reviews.map((review, idx) => (
             <ReviewTable
-              key={review._id}
+              key={review.id}
               review={review}
               handleDelete={handleDelete}
               handleEdit={handleEdit}

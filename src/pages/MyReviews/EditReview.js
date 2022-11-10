@@ -2,12 +2,14 @@ import React, { useState, useEffect, useContext } from "react";
 import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../contexts/AuthProvider";
+import useTitle from "../../hooks/useTitle";
 
 const EditReview = () => {
   const { id } = useParams();
   const review = useLoaderData();
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
+  useTitle("Edit Review");
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -7,12 +7,14 @@ import { CursorContext } from "../../contexts/CursorContext";
 import Spinner from "../../componnets/Spinner";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import { Link } from "react-router-dom";
+import useTitle from "../../hooks/useTitle";
 
 //SRVICE
 
 const Service = () => {
   const { mouseEnterHandler, mouseLeaveHandler } = useContext(CursorContext);
   const [loading, setLoading] = useState(false);
+  useTitle("Service");
 
   const [services, setServices] = useState([]);
   useEffect(() => {
@@ -63,7 +65,10 @@ const Service = () => {
                 const { imgUrl, name, description, price, _id } = service;
                 return (
                   <PhotoProvider>
-                    <div className="bg-secondary p-6 rounded-2xl" key={idx}>
+                    <div
+                      className="bg-secondary p-6 rounded-2xl"
+                      key={service.id}
+                    >
                       <div className="text-accent rounded-sm w-full h-50 flex justify-center items-center mb-4 text-[28px]">
                         <PhotoView src={imgUrl}>
                           <img

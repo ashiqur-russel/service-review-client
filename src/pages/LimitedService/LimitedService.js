@@ -46,7 +46,7 @@ const LimitedService = () => {
           {service.map((service, idx) => {
             const { imgUrl, name, price } = service;
             return (
-              <div className="bg-secondary p-6 rounded-2xl " key={idx}>
+              <div className="bg-secondary p-6 rounded-2xl " key={service.id}>
                 <div className="text-accent rounded-sm w-full h-75 flex justify-center items-center mb-10 mx-auto text-[28px]">
                   <img src={imgUrl} alt="" className="w-full h-50" />
                 </div>

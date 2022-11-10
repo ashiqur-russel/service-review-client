@@ -11,10 +11,12 @@ import { CursorContext } from "../../contexts/CursorContext";
 import About from "../About/About";
 import Contact from "../Contact/Contact";
 import LimitedService from "../LimitedService/LimitedService";
+import useTitle from "../../hooks/useTitle";
 // cursor context
 
 const Home = () => {
   const { mouseEnterHandler, mouseLeaveHandler } = useContext(CursorContext);
+  useTitle("Home");
   return (
     <motion.section
       initial={{ opacity: 0 }}

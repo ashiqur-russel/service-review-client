@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider";
 import { toast } from "react-toastify";
+import useTitle from "../../../hooks/useTitle";
 
 const AddService = () => {
   const { user } = useContext(AuthContext);
-
+  useTitle("Add Service");
   const handlePlaceOrder = (event) => {
     event.preventDefault();
     const form = event.target;

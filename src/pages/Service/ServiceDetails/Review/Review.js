@@ -1,10 +1,14 @@
 import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../../../contexts/AuthProvider";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
+import useTitle from "../../../../hooks/useTitle";
 
 const Review = ({ singleService }) => {
   const { _id, name } = singleService;
-  const { user } = useContext(AuthContext);
+  const { user, signIn } = useContext(AuthContext);
+  useTitle("Review");
+
   const [reviews, setReviews] = useState([]);
   const [refresh, setRefresh] = useState(false);
   useEffect(() => {
@@ -72,7 +76,7 @@ const Review = ({ singleService }) => {
         </div>
       ) : (
         reviews.map((review, idx) => (
-          <div className=" w-full lg:max-w-full" key={idx}>
+          <div className=" w-full lg:max-w-full" key={review.id}>
             <div className="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
               <div className="mb-8">
                 <p className="text-sm text-gray-600 flex items-center">
@@ -107,16 +111,17 @@ const Review = ({ singleService }) => {
       )}
       <div className="flex justify-center">
         <div className="mb-3 xl:w-96">
-          <form onSubmit={handlePlaceReview}>
-            <label
-              htmlFor="exampleFormControlTextarea1"
-              className="form-label inline-block mb-2 text-gray-700"
-            >
-              Give A Review
-            </label>
-            <textarea
-              name="message"
-              className="
+          {user?.uid ? (
+            <form onSubmit={handlePlaceReview}>
+              <label
+                htmlFor="exampleFormControlTextarea1"
+                className="form-label inline-block mb-2 text-gray-700"
+              >
+                Give A Review
+              </label>
+              <textarea
+                name="message"
+                className="
         form-control
         block
         w-full
@@ -133,13 +138,23 @@ const Review = ({ singleService }) => {
         m-0
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
       "
-              id="exampleFormControlTextarea1"
-              rows="3"
-              placeholder="Your Review"
-              onBlur={handleInputBlur}
-            ></textarea>
-            <button className="btn mt-5">Submit</button>
-          </form>
+                id="exampleFormControlTextarea1"
+                rows="3"
+                placeholder="Your Review"
+                onBlur={handleInputBlur}
+              ></textarea>
+              <button className="btn mt-5">Submit</button>
+            </form>
+          ) : (
+            <span>
+              <p className="p-4 text-xl text-orange-500">
+                Please login to write review{" "}
+                <Link to="/signin">
+                  <button className="btn">Login</button>
+                </Link>
+              </p>
+            </span>
+          )}
         </div>
       </div>
     </div>

@@ -6,10 +6,12 @@ import { motion } from "framer-motion";
 // import transition
 import { transition1 } from "../../transitions";
 import { CursorContext } from "../../contexts/CursorContext";
+import useTitle from "../../hooks/useTitle";
 // import context
 
 const Contact = () => {
   const { mouseEnterHandler, mouseLeaveHandler } = useContext(CursorContext);
+  useTitle("Contact");
 
   return (
     <motion.section

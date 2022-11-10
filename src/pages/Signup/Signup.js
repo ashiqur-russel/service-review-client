@@ -4,8 +4,10 @@ import { Link, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../contexts/AuthProvider";
+import useTitle from "../../hooks/useTitle";
 const Signup = () => {
   const [error, setError] = useState("");
+  useTitle("Signup");
   const {
     createUser,
     updateUserProfile,
