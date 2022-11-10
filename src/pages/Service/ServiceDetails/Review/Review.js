@@ -11,6 +11,7 @@ const Review = ({ singleService }) => {
 
   const [reviews, setReviews] = useState([]);
   const [refresh, setRefresh] = useState(false);
+  const [error, setError] = useState("");
   useEffect(() => {
     fetch(`https://service-review-ashiqur-russel.vercel.app/reviews-all/${_id}`)
       .then((res) => res.json())
@@ -28,7 +29,9 @@ const Review = ({ singleService }) => {
     const service_name = name;
     const photoURL = user?.photoURL;
     const message = form.message.value;
-    console.log(user_name, email, message, service_id);
+    if (message.length < 0) {
+      setError("Please Write review for post");
+    }
     const reviews = {
       user_photo: photoURL,
       user_name,
@@ -142,6 +145,7 @@ const Review = ({ singleService }) => {
                 rows="3"
                 placeholder="Your Review"
                 onBlur={handleInputBlur}
+                required
               ></textarea>
               <button className="btn mt-5">Submit</button>
             </form>
@@ -153,6 +157,9 @@ const Review = ({ singleService }) => {
                   <button className="btn">Login</button>
                 </Link>
               </p>
+              <span>
+                <p className="text-red-400">{error}</p>
+              </span>
             </span>
           )}
         </div>

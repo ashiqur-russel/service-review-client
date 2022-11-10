@@ -24,11 +24,11 @@ const Signin = () => {
       .then((result) => {
         const user = result.user;
         if (user.uid) {
-          setAuthToken(user);
-          navigate(from, { replace: true });
           toast.success("Logged in Successfully!", {
             position: toast.POSITION.TOP_CENTER,
           });
+          setAuthToken(user);
+          navigate(from, { replace: true });
         }
       })
       .catch((error) => setError(error));
