@@ -43,9 +43,9 @@ const AuthProvider = ({ children }) => {
   //logout function
   const logOut = () => {
     setLoading(true);
-    toast.info("You are logged out!", {
-      position: toast.POSITION.TOP_CENTER,
-    });
+
+    localStorage.removeItem("review-token");
+
     return signOut(auth);
   };
 

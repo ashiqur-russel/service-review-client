@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../contexts/AuthProvider";
 import useTitle from "../../hooks/useTitle";
+import { setAuthToken } from "../../token/auth";
 const Signup = () => {
   const [error, setError] = useState("");
   useTitle("Signup");
@@ -31,7 +32,7 @@ const Signup = () => {
     createUser(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        //setAuthToken(user);
         form.reset();
 
         handleUpdateUserProfile(name);

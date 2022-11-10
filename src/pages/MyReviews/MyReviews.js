@@ -6,21 +6,29 @@ import { toast } from "react-toastify";
 import useTitle from "../../hooks/useTitle";
 
 const MyReviews = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
   useTitle("Mein Review");
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews?email=${user?.email}`)
+    fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("review-token")}`,
+      },
+    })
       .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          return logOut();
+        }
         return res.json();
       })
       .then((data) => {
         setReviews(data);
       })
       .then((err) => console.log(err));
-  }, [user?.email]);
+  }, [user?.email, logOut]);
 
   const handleDelete = (id) => {
     console.log("Review delete clicked", id);
@@ -31,6 +39,10 @@ const MyReviews = () => {
     if (proceed) {
       fetch(`http://localhost:5000/reviews-all/${id}`, {
         method: "DELETE",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("review-token")}`,
+        },
       })
         .then((res) => res.json())
         .then((data) => {

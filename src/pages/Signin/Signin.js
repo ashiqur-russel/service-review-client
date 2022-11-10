@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../contexts/AuthProvider";
 import useTitle from "../../hooks/useTitle";
+import { setAuthToken } from "../../token/auth";
 const Signin = () => {
   const [error, setError] = useState("");
   const { providerLogin, signIn, setLoading } = useContext(AuthContext);
@@ -23,6 +24,7 @@ const Signin = () => {
       .then((result) => {
         const user = result.user;
         if (user.uid) {
+          setAuthToken(user);
           navigate(from, { replace: true });
           toast.success("Logged in Successfully!", {
             position: toast.POSITION.TOP_CENTER,
@@ -61,8 +63,8 @@ const Signin = () => {
       .then((result) => {
         const user = result.user;
         form.reset();
-        setError("");
         if (user.uid) {
+          setAuthToken(user);
           navigate(from, { replace: true });
           toast.success("Logged in Successfully!", {
             position: toast.POSITION.TOP_CENTER,
