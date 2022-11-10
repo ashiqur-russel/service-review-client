@@ -12,12 +12,15 @@ const MyReviews = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("review-token")}`,
-      },
-    })
+    fetch(
+      `https://service-review-ashiqur-russel.vercel.app/reviews?email=${user?.email}`,
+      {
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("review-token")}`,
+        },
+      }
+    )
       .then((res) => {
         if (res.status === 401 || res.status === 403) {
           return logOut();
@@ -37,13 +40,16 @@ const MyReviews = () => {
     );
 
     if (proceed) {
-      fetch(`http://localhost:5000/reviews-all/${id}`, {
-        method: "DELETE",
-        headers: {
-          "content-type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("review-token")}`,
-        },
-      })
+      fetch(
+        `https://service-review-ashiqur-russel.vercel.app/reviews-all/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "content-type": "application/json",
+            authorization: `Bearer ${localStorage.getItem("review-token")}`,
+          },
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           console.log(data);

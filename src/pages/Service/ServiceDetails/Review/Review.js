@@ -12,7 +12,7 @@ const Review = ({ singleService }) => {
   const [reviews, setReviews] = useState([]);
   const [refresh, setRefresh] = useState(false);
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews-all/${_id}`)
+    fetch(`https://service-review-ashiqur-russel.vercel.app/reviews-all/${_id}`)
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);
@@ -39,7 +39,7 @@ const Review = ({ singleService }) => {
       date: new Date(),
     };
 
-    fetch("http://localhost:5000/reviews-all", {
+    fetch("https://service-review-ashiqur-russel.vercel.app/reviews-all", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -95,7 +95,7 @@ const Review = ({ singleService }) => {
               <div className="flex items-center">
                 <img
                   className="w-10 h-10 rounded-full mr-4"
-                  src="/ben.png"
+                  src={review.user_photo}
                   alt=""
                 />
                 <div className="text-sm">

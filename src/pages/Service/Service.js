@@ -20,7 +20,7 @@ const Service = () => {
   useEffect(() => {
     setLoading(true);
 
-    fetch("http://localhost:5000/services")
+    fetch("https://service-review-ashiqur-russel.vercel.app/services")
       .then((res) => res.json())
       .then((data) => {
         setLoading(true);

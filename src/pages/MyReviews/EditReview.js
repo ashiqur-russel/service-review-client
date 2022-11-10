@@ -19,13 +19,16 @@ const EditReview = () => {
       comment: message,
       date: new Date(),
     };
-    fetch(`http://localhost:5000/reviews-all/${id}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(review),
-    })
+    fetch(
+      `https://service-review-ashiqur-russel.vercel.app/reviews-all/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(review),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {

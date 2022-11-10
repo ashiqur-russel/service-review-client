@@ -31,7 +31,9 @@ export const router = createBrowserRouter([
       {
         path: "/services/:id",
         loader: ({ params }) => {
-          return fetch(`http://localhost:5000/services/${params.id}`);
+          return fetch(
+            `https://service-review-ashiqur-russel.vercel.app/services/${params.id}`
+          );
         },
         element: <SignleService></SignleService>,
       },
@@ -47,7 +49,9 @@ export const router = createBrowserRouter([
         path: "/reviews/edit/:id",
         element: <EditReview></EditReview>,
         loader: ({ params }) => {
-          return fetch(`http://localhost:5000/reviewss-all/${params.id}`);
+          return fetch(
+            `https://service-review-ashiqur-russel.vercel.app/reviewss-all/${params.id}`
+          );
         },
       },
       {
