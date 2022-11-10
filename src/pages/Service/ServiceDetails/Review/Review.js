@@ -6,7 +6,7 @@ const Review = ({ singleService }) => {
   const { _id, name } = singleService;
   const { user } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
-
+  const [refresh, setRefresh] = useState(false);
   useEffect(() => {
     fetch(`http://localhost:5000/reviews-all/${_id}`)
       .then((res) => res.json())
@@ -14,7 +14,7 @@ const Review = ({ singleService }) => {
         setReviews(data);
       })
       .then((err) => console.log(err));
-  }, []);
+  }, [refresh, _id]);
   const handlePlaceReview = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -45,7 +45,10 @@ const Review = ({ singleService }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
-          alert("Reviews added successfully");
+          setRefresh(!refresh);
+          toast.success("Review added successfully", {
+            position: toast.POSITION.TOP_CENTER,
+          });
           form.reset();
         }
       })

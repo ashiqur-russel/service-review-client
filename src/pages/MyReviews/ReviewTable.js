@@ -1,6 +1,6 @@
 import React from "react";
 
-const ReviewTable = ({ review, handleDelete }) => {
+const ReviewTable = ({ review, handleDelete, handleEdit }) => {
   const { service_name, date, comment, _id } = review;
 
   return (
@@ -44,7 +44,9 @@ const ReviewTable = ({ review, handleDelete }) => {
       </td>
       <td>{date}</td>
       <th>
-        <button className="btn-ghost btn-xs">Edit</button>
+        <button className="btn-ghost btn-xs" onClick={() => handleEdit(_id)}>
+          Edit
+        </button>
       </th>
     </tr>
   );

@@ -1,9 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import ReviewTable from "./ReviewTable";
+import { toast } from "react-toastify";
 
 const MyReviews = () => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const [reviews, setReviews] = useState([]);
 
@@ -19,7 +22,7 @@ const MyReviews = () => {
   }, [user?.email]);
 
   const handleDelete = (id) => {
-    console.log("Order delete clicked", id);
+    console.log("Review delete clicked", id);
     const proceed = window.confirm(
       "Are you sure, you want to delete this order"
     );
@@ -32,13 +35,20 @@ const MyReviews = () => {
         .then((data) => {
           console.log(data);
           if (data.deletedCount > 0) {
-            alert("Deleted Successfully");
+            toast.success("Deleted Successfully!", {
+              position: toast.POSITION.TOP_CENTER,
+            });
             const remaining = reviews.filter((rvw) => rvw._id !== id);
             setReviews(remaining);
           }
         })
         .then((err) => console.log(err));
     }
+  };
+
+  const handleEdit = (id) => {
+    console.log("Rveiwe Edit clicked", id);
+    navigate(`/reviews/edit/${id}`);
   };
 
   return (
@@ -63,6 +73,7 @@ const MyReviews = () => {
               key={review._id}
               review={review}
               handleDelete={handleDelete}
+              handleEdit={handleEdit}
             ></ReviewTable>
           ))}
         </tbody>

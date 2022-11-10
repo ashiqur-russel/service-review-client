@@ -4,6 +4,7 @@ import Main from "../Layout/Main";
 import About from "../pages/About/About";
 import Contact from "../pages/Contact/Contact";
 import Home from "../pages/Home/Home";
+import EditReview from "../pages/MyReviews/EditReview";
 import MyReviews from "../pages/MyReviews/MyReviews";
 import AddService from "../pages/Service/AddService/AddService";
 import Service from "../pages/Service/Service";
@@ -40,6 +41,13 @@ export const router = createBrowserRouter([
             <AddService></AddService>
           </PrivateRoutes>
         ),
+      },
+      {
+        path: "/reviews/edit/:id",
+        element: <EditReview></EditReview>,
+        loader: ({ params }) => {
+          return fetch(`http://localhost:5000/reviewss-all/${params.id}`);
+        },
       },
       {
         path: "/my-reviews",
