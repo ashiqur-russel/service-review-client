@@ -50,3 +50,6 @@ tr {
 .table-div {
   padding: 10px !important;
 }
+.section {
+  padding-top: 0;
+}
