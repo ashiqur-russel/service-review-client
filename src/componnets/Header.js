@@ -69,6 +69,12 @@ const Header = () => {
           >
             Contact
           </Link>
+          <Link
+            to={"/blog"}
+            className="text-[#696c6d] hover:text-primary transition"
+          >
+            Blog
+          </Link>
           {user ? (
             <>
               <Link

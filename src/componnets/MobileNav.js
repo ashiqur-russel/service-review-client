@@ -72,6 +72,12 @@ const MobileNav = () => {
           <li>
             <Link to="/contact">Contact</Link>
           </li>
+          <Link
+            to={"/blog"}
+            className="text-[#696c6d] hover:text-primary transition"
+          >
+            Blog
+          </Link>
           {user ? (
             <>
               <li>
@@ -85,7 +91,7 @@ const MobileNav = () => {
               <li>
                 {" "}
                 <Link
-                  to={"/add-service"}
+                  to={"/add-services"}
                   className="text-[#696c6d] hover:text-primary transition"
                 >
                   Add Service

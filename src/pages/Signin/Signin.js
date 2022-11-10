@@ -123,7 +123,7 @@ const Signin = () => {
       <div className="container h-screen m-auto">
         <div className="relative h-full ml-auto lg:w-6/12 mx-auto">
           <div className="m-auto py-12 px-6 sm:p-20 xl:w-10/12">
-            <div className="mt-12 grid gap-6 sm:grid-cols-2">
+            <div className="mt-12 grid gap-6 ">
               <button
                 onClick={handleGoogleSignIn}
                 className="py-3 px-6 rounded-xl bg-blue-50 hover:bg-blue-100 focus:bg-blue-100 active:bg-blue-200"
@@ -135,8 +135,9 @@ const Signin = () => {
                   </span>
                 </div>
               </button>
-              <button
+              {/*  <button
                 onClick={handleGithubSignIn}
+                disabled
                 className="py-3 px-6 rounded-xl bg-gray-900 transition hover:bg-gray-800 active:bg-gray-600 focus:bg-gray-700"
               >
                 <div className="flex gap-4 items-center justify-center text-white">
@@ -153,7 +154,7 @@ const Signin = () => {
                     with Github
                   </span>
                 </div>
-              </button>
+              </button> */}
             </div>
 
             <div role="hidden" className="mt-12 border-t">
